@@ -1,5 +1,5 @@
 import "./globals.css";
-import { usePathname } from "next/navigation";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Header } from "./components/header";
 
 export const metadata = {

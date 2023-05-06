@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getProductById, updateProduct } from "../../actions";
+import { AddEditForm } from "../../components/add-edit-form";
 
 export default async function ProductEditPage({
   params,
@@ -29,26 +30,28 @@ export default async function ProductEditPage({
 
       price: Number(formData.get("price")),
     });
-    redirect(`/products/${params.id}`);
+    redirect(`/`);
   }
 
-  return (
-    <main>
-      <h2>Edit {product?.name}</h2>
-      <form action={updateProducts} className="flex flex-col">
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" defaultValue={product?.name} />
+  if (!product) return null;
 
-        <label htmlFor="price">Price</label>
-        <input
-          type="text"
-          name="price"
-          id="price"
-          defaultValue={product?.price}
-        />
-        <button type="submit">Save and Continue</button>
-        <button formAction={updateProductAndGoBack}>Save and Quit</button>
-      </form>
+  return (
+    <main className="max-w-7xl mx-auto my-8 flex flex-col gap-4">
+      <h1 className="text-3xl font-bold">Edit Product</h1>
+      <AddEditForm onSubmit={updateProducts} product={product}>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm"
+        >
+          Update
+        </button>
+        <button
+          formAction={updateProductAndGoBack}
+          className="bg-green-500 text-white px-4 py-2 rounded-md shadow-sm"
+        >
+          Update and go back
+        </button>
+      </AddEditForm>
     </main>
   );
 }

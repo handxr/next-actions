@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createProduct } from "../actions";
+import { AddEditForm } from "../components/add-edit-form";
 
 export default function ProductAddPage() {
   async function addProduct(formData: FormData) {
@@ -14,15 +15,16 @@ export default function ProductAddPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto">
-      <h1>Product Add Page</h1>
-      <form action={addProduct} className="flex flex-col">
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" />
-        <label htmlFor="price">Price</label>
-        <input type="text" name="price" id="price" />
-        <button type="submit">Save</button>
-      </form>
+    <main className="max-w-7xl mx-auto my-8 flex flex-col gap-4">
+      <h1 className="text-3xl font-bold">Add Product</h1>
+      <AddEditForm onSubmit={addProduct}>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm"
+        >
+          Add
+        </button>
+      </AddEditForm>
     </main>
   );
 }
