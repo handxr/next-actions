@@ -2,7 +2,6 @@ import { prisma } from "../lib/db";
 
 type CreateProductDTO = {
   name: string;
-  image: string;
   price: number;
 };
 

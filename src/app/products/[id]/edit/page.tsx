@@ -14,7 +14,7 @@ export default async function ProductEditPage({
 
     await updateProduct(Number(params.id), {
       name: formData.get("name") as string,
-      image: formData.get("image") as string,
+
       price: Number(formData.get("price")),
     });
 
@@ -26,7 +26,7 @@ export default async function ProductEditPage({
 
     await updateProduct(Number(params.id), {
       name: formData.get("name") as string,
-      image: formData.get("image") as string,
+
       price: Number(formData.get("price")),
     });
     redirect(`/products/${params.id}`);
@@ -38,13 +38,7 @@ export default async function ProductEditPage({
       <form action={updateProducts} className="flex flex-col">
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" defaultValue={product?.name} />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="image"
-          id="image"
-          defaultValue={product?.image}
-        />
+
         <label htmlFor="price">Price</label>
         <input
           type="text"
