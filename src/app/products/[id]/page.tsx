@@ -1,17 +1,14 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/app/lib/db";
+
 import Image from "next/image";
+import { getProductById } from "../actions";
 
 export default async function ProductPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const product = await prisma.product.findUnique({
-    where: {
-      id: Number(params.id),
-    },
-  });
+  const product = await getProductById(Number(params.id));
 
   if (!product) {
     notFound();

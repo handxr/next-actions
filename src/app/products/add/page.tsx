@@ -1,15 +1,13 @@
-import { prisma } from "@/app/lib/db";
+import { createProduct } from "../actions";
 
 export default function ProductAddPage() {
   async function addProduct(formData: FormData) {
     "use server";
 
-    await prisma.product.create({
-      data: {
-        name: formData.get("name") as string,
-        image: formData.get("image") as string,
-        price: Number(formData.get("price")),
-      },
+    await createProduct({
+      name: formData.get("name") as string,
+      image: formData.get("image") as string,
+      price: Number(formData.get("price")),
     });
   }
 
